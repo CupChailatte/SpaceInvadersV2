@@ -38,3 +38,18 @@ InputManager
 
 GameManager
 - Håller koll på svårighetsgrad och vad playern trycker på i menyn/UI - Håller koll på GameStates;
+
+
+
+
+STEP 1: 21 September
+Gör player klass och ladda upp den på fönstret. - DONE
+INPUTMANGER
+- TANGENT DONE
+- MUS DONE 
+
+22 September 
+Skapa UIManager och Gamestate Manager
+ -MAIN MENU 
+ -GAME MENU 
+ -GAMEOVER/WIN SCREEN
