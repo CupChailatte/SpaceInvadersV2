@@ -14,9 +14,11 @@ public class InputManager
 
     public void Update()
     {
+        // Sparar det gamla läget först
         _previousKeyState = _currentKeyState; 
         _previousMouseState = _currentMouseState;
 
+        // Hämtar det nya läget från enheterna. 
         _currentKeyState = Keyboard.GetState(); 
         _currentMouseState = Mouse.GetState(); 
 
@@ -35,6 +37,12 @@ public class InputManager
     }
 
     // ---- MUS/MOUSE HJÄLPARE ----- 
+
+    public Vector2 GetMousePosition()
+    {
+        return new Vector2(_currentMouseState.X,_currentMouseState.Y ); 
+    }
+
     public bool IsLeftClick()
     {
         return 

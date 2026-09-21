@@ -44,7 +44,7 @@ public class Game1 : Game
         float startX = (_display.Width / 2f - _playerSprite.Width /2f); 
         float startY = (_display.Height - _playerSprite.Height -20f); 
         Vector2 _playerSpriteStartPosition = new Vector2(startX, startY); 
-        _player = new Player(_playerSprite,_playerSpriteStartPosition, 100, 600f, true, false, _input); 
+        _player = new Player(_playerSprite,_playerSpriteStartPosition, 100, 600f, true, false, _input, _display); 
     }
 
     protected override void Update(GameTime gameTime)
@@ -53,7 +53,7 @@ public class Game1 : Game
             Exit();
 
         // TODO: Add your update logic here
-        _input.Update();
+        _input.Update(); 
         _player.Update(gameTime);
         base.Update(gameTime);
     }
