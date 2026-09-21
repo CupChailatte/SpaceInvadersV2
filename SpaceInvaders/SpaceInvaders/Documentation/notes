@@ -1,0 +1,39 @@
+
+
+
+Mina Objekter
+
+Entity - Basklass 
+Den ska vara parent till 
+-bullet, enemy och player
+
+Properties: 
+- Texture 2D, 
+- Vector2,
+- int health 
+- float speed
+- bool canShoot
+- PowerUp 
+- IsActive
+
+Update(); 
+Draw(); 
+
+
+Mina Managers (The Single Responsibility Principle): 
+Collision Manager
+Enemy Manager 
+UI Manager 
+- Hantera Ritande av gamestates t.ex Bakgrund. 
+- Main Menu
+- Playing 
+- GameOver/Win 
+
+DisplayManager 
+-Ändra storlek och text 
+
+InputManager 
+- Styra med både mus och tangent (skjuta och röra på sig)
+
+GameManager
+- Håller koll på svårighetsgrad och vad playern trycker på i menyn/UI - Håller koll på GameStates;

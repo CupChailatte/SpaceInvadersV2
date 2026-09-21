@@ -1,0 +1,40 @@
+1. UIManager (Gränssnitt och det visuella)
+UIManager ansvarar för allt som visas på skärmen för spelaren, förutom själva spelvärlden (som spelare och fiender).
+
+Vad den gör:
+
+Ritar ut menyer, startknappar, inställningar och Game Over-skärmar.
+
+Hanterar bakgrundsbilder för menyer.
+
+Skriver ut text som poäng, livräknare eller "High Score" på skärmen via SpriteFont.
+
+Känner av om spelaren klickar med musen på en menyknapp.
+
+Exempel: När spelaren klickar på "Starta spel"-knappen i menyn är det UIManager som upptäcker klicket och meddelar spelet att det ska starta.
+
+2. GameManager (Spelns hjärna och data)
+GameManager (ibland kallad GameEngine eller huvudkontroller) är den centrala spindeln i nätet som håller reda på spelets tillstånd och data. Den bryr sig inte om hur saker ritas ut, utan bara om hur spelet fungerar.
+
+Vad den gör:
+
+Håll koll på nuvarande GameState (t.ex. om spelet är i menyn, spelas aktivt, är pausat eller är Game Over).
+
+Sparar globala inställningar, som den valda svårighetsgraden (Easy, Medium, Hard).
+
+Håller reda på spelarens aktuella poäng, antal liv eller klarade banor.
+
+Ser till att andra managers (som EnemyManager) vet vad som händer.
+
+Exempel: Om spelaren dör ändrar GameManager spelets state till GameOver och sparar ner poängen.
+
+Sammanfattning: Hur de samarbetar
+Spelaren klickar på "Svår"-knappen i UIManager.
+
+UIManager berättar för GameManager: "Sätt svårighetsgraden till Hard!"
+
+GameManager sparar den inställningen centralt.
+
+När banan startar läser EnemyManager av GameManager för att veta hur snabba fienderna ska vara.
+
+UIManager ritar ut menyn eller spelgränssnittet baserat på vad GameManager säger åt den att visa.
