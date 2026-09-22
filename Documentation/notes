@@ -53,3 +53,14 @@ Skapa UIManager och Gamestate Manager
  -MAIN MENU 
  -GAME MENU 
  -GAMEOVER/WIN SCREEN
+
+
+
+ Notes
+ Jag har en interface "class" IGameState som används för att skapa olika fönster
+ GameStateManagern är "motorn" som byter mellan de olika skärmarna eller underklasser av IGameState 
+
+
+ GameStateManagern - Håller koll på vilken skärm som är aktivt just nu
+ UIManager är bara ett hjälpar klass eller vertyg för att rita UI komponenter som Knappar, 
+ Menyer, text, score eller liv. Detta används inuti mina states t.ex MenuState, BattleState eller GameOverState
