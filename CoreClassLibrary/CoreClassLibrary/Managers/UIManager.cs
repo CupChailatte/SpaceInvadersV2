@@ -13,7 +13,7 @@ public class UIManager
     public void LoadContent(ContentManager content)
     {
         //_fontDefault = content.Load<SpriteFont>();
-        fontTitle = content.Load<SpriteFont>("Content/Fonts/TitleFont");
+        fontTitle = content.Load<SpriteFont>("Fonts/Text");
         //_heartTexture = content.Load<Texture2D>(); 
     }
     public void DrawScore(SpriteBatch spriteBatch, int score, Vector2 position)

@@ -64,3 +64,10 @@ Skapa UIManager och Gamestate Manager
  GameStateManagern - Håller koll på vilken skärm som är aktivt just nu
  UIManager är bara ett hjälpar klass eller vertyg för att rita UI komponenter som Knappar, 
  Menyer, text, score eller liv. Detta används inuti mina states t.ex MenuState, BattleState eller GameOverState
+
+
+
+Sept 23 
+Jag insåg att min SettingsManager som bara tog hand om ändringar av skärmens storlek är reduntant
+och att jag kunde bara använda monogames GraphicsDevice och GraphicsDeviceManager för att ändra fönsterstorlek 
+Jag har tagit bort SettingsManager; 

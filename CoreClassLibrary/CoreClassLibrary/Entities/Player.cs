@@ -11,7 +11,7 @@ public class Player : Entity
 {
 
     protected InputManager _input; 
-    protected SettingsManager _display;  
+    protected GraphicsDevice _display; 
     public Player(Texture2D sprite,
      Vector2 spritePosition,
       int health,
@@ -19,7 +19,7 @@ public class Player : Entity
         bool canShoot,
          bool isExpired,
           InputManager inputManager,
-          SettingsManager display) : base(
+          GraphicsDevice display) : base(
     sprite,
     spritePosition,
     health,
@@ -27,8 +27,9 @@ public class Player : Entity
     canShoot,
     isExpired)
     {
-     _input = inputManager;    
-     _display = display; 
+     _input = inputManager; 
+     _display = display;    
+     
     }
 
 
@@ -49,8 +50,8 @@ public class Player : Entity
             //Console.WriteLine("MOVE RIGHT FUNCTION CALL - PLAYER CLASS"); 
             break;
             // Körs bara om pilen är inne i fönstret
-            case var _ when targetMousePosition.X >= 0 && targetMousePosition.X <= _display.Width && 
-            targetMousePosition.Y >= 0 && targetMousePosition.Y <= _display.Height:
+            case var _ when targetMousePosition.X >= 0 && targetMousePosition.X <= _display.Viewport.Width && 
+            targetMousePosition.Y >= 0 && targetMousePosition.Y <= _display.Viewport.Height:
              //--- Centrerar Musen på player sprite --- 
              targetMousePosition.X -= _sprite.Width /2f; 
              targetMousePosition.Y -= _sprite.Height /2f;
@@ -70,7 +71,7 @@ public class Player : Entity
 
         
 
-        _spritePosition.X = MathHelper.Clamp(_spritePosition.X, 0, _display.Width - _sprite.Width);
+        _spritePosition.X = MathHelper.Clamp(_spritePosition.X, 0, _display.Viewport.Width - _sprite.Width);
         
     }
 

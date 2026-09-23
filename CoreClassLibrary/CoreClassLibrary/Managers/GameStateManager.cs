@@ -8,27 +8,35 @@ namespace CoreClassLibrary.Managers;
 
 public class GameStateManager
 {
-    private readonly Dictionary<GameScreen, IGameState> _states = new Dictionary<GameScreen, IGameState>();
+    private readonly Dictionary<GameStateType, IGameState> _states = new Dictionary<GameStateType, IGameState>();
     private IGameState _currentState;
     private ContentManager _content; 
+    private GraphicsDevice _graphicsDevice; 
+
+    // Konstruktor! 
+    public GameStateManager(ContentManager content, GraphicsDevice graphicsDevice)
+    {
+        _content = content; 
+        _graphicsDevice = graphicsDevice; 
+    }
 
 
     // Registerar key till value. T.ex Menu enum blir kopplad till MenuState skärmen. 
-    public void AddState(GameScreen type, IGameState state)
+    public void AddState(GameStateType type, IGameState state)
     {
         _states[type] = state;
     }
 
     //---Ändrar gamestate genom enum värden 
     //---Jag lägger in i parametern en enum för att ändra fönstret- 
-    public void ChangeState(GameScreen stateType)
+    public void ChangeState(GameStateType stateType)
     {
         if (_states.TryGetValue(stateType, out var newState))
         {
             _currentState?.UnloadContent();
 
             _currentState = newState;
-            _currentState.Initialize();
+            _currentState.Initialize(_graphicsDevice);
             _currentState.LoadContent(_content);
         }
 

@@ -7,19 +7,9 @@ namespace CoreClassLibrary.Interface;
 //* Interface/gränsnitt för att skapa mina skärmar
 
 
-
-public enum GameScreen
-{
-    MainMenu, 
-    BattleScreen, 
-    PauseScreen, 
-    GameOverScreen, 
-    VictoryScreen, 
-}
-
 public interface IGameState
 {
-    void Initialize(); 
+    void Initialize(GraphicsDevice graphicsDevice); 
     void LoadContent(ContentManager content);
     void UnloadContent(); 
     void Update(GameTime gameTime);

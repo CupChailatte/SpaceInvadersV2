@@ -13,21 +13,26 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Fonts/File.spritefont
+#begin Background/Stars_panorama_sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.1
+/build:Background/Stars_panorama_sheet.png
+
+#begin Fonts/Text.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /processorParam:Version=3.8.5.1
-/build:Fonts/File.spritefont;Fonts/TitleFont.spritefont
-
-#begin Fonts/PressStart2P-Regular.ttf
-/importer:FontImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/processorParam:Version=3.8.5.1
-/build:Fonts/PressStart2P-Regular.ttf
+/build:Fonts/Text.spritefont
 
 #begin Ship_01-1.png
 /importer:TextureImporter
