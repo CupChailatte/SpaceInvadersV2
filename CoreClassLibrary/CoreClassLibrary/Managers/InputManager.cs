@@ -38,7 +38,7 @@ public class InputManager
 
     // ---- MUS/MOUSE HJÄLPARE ----- 
 
-    public Vector2 GetMousePosition()
+    public Vector2 GetMousePosition() //* Hämtar positionen från musen
     {
         return new Vector2(_currentMouseState.X,_currentMouseState.Y ); 
     }
