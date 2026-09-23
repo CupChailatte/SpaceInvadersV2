@@ -14,11 +14,18 @@ public class UIManager
     public void LoadContent(ContentManager content)
     {
         _fontDefault = content.Load<SpriteFont>();
-        _fontTitle = content.Load<SpriteFont>();
+        _fontTitle = conent.Load<SpriteFont>("Content/Fonts/TitleFont");
         _heartTexture = content.Load<Texture2D>(); 
     }
     public void DrawScore(SpriteBatch spriteBatch, int score, Vector2 position)
     {
         spriteBatch.DrawString(_fontDefault,$"SCORE {score:D4}", position, Color.White ); 
     }
+
+    public void DrawLives(SpriteBatch spritebatch, int health, Vector2 position)
+    {
+        spritebatch.DrawString(_heartTexture, "Lives: ", position, Color.Red); 
+
+        // TODO: Jag behöver en loop som ritar ut hjärt texturen. 
+    }   
 }

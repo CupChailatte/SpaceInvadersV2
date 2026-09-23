@@ -9,6 +9,9 @@ namespace SpaceInvaders;
 public class Game1 : Game
 {
     //---- MANAGERS ----
+
+    private GameStateManger _gameStateManager; 
+    private UIManager _UIManager; 
     private GraphicsDeviceManager _graphics;
     private SettingsManager _display; 
     private InputManager _input; 
@@ -19,8 +22,11 @@ public class Game1 : Game
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
+        _gameState = new GameStateManger(); 
 
+        _gameStateManager.AddState(GameStateType.MainMenu, new MenuState(_gameStateManager, _UIManager)); 
         _display = new SettingsManager(_graphics, 750,1300, false);
+        _gameStateManager.ChangeState(GameStateType.MainMenu); 
         IsMouseVisible = true;
     }
 
@@ -29,6 +35,7 @@ public class Game1 : Game
         // TODO: Add your initialization logic here (Gör så att jag kan avända mina objekt)
         _input = new InputManager(); 
         Window.Title = "SPACE INVADERSV2";
+
         base.Initialize();
     }
 

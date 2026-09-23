@@ -13,6 +13,22 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Fonts/File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/processorParam:Version=3.8.5.1
+/build:Fonts/File.spritefont;Fonts/TitleFont.spritefont
+
+#begin Fonts/PressStart2P-Regular.ttf
+/importer:FontImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/processorParam:Version=3.8.5.1
+/build:Fonts/PressStart2P-Regular.ttf
+
 #begin Ship_01-1.png
 /importer:TextureImporter
 /processor:TextureProcessor

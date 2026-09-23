@@ -14,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.*" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
-  </ItemGroup>ö
+  </ItemGroup>
   <ItemGroup>
   <ProjectReference Include="..\..\CoreClassLibrary\CoreClassLibrary\CoreClassLibrary.csproj"/>
   </ItemGroup>
