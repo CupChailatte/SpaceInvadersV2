@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content; 
 using System.Collections.Generic;
 using CoreClassLibrary.Interface;
+using CoreClassLibrary.Managers;
+using System; 
 
 namespace CoreClassLibrary.Managers;
 
@@ -11,13 +13,16 @@ public class GameStateManager
     private readonly Dictionary<GameStateType, IGameState> _states = new Dictionary<GameStateType, IGameState>();
     private IGameState _currentState;
     private ContentManager _content; 
-    private GraphicsDevice _graphicsDevice; 
+    private GraphicsDevice _graphicsDevice;
+    private GraphicsDeviceManager _graphicsDeviceManager;  
+    private Game _game; 
 
     // Konstruktor! 
-    public GameStateManager(ContentManager content, GraphicsDevice graphicsDevice)
+    public GameStateManager(Game game, ContentManager content, GraphicsDeviceManager graphicsDeviceManager)
     {
+        _game = game; 
         _content = content; 
-        _graphicsDevice = graphicsDevice; 
+        _graphicsDeviceManager = graphicsDeviceManager; 
     }
 
 
@@ -29,15 +34,34 @@ public class GameStateManager
 
     //---Ändrar gamestate genom enum värden 
     //---Jag lägger in i parametern en enum för att ändra fönstret- 
-    public void ChangeState(GameStateType stateType)
+    public void ChangeState(GameStateType stateType) 
     {
         if (_states.TryGetValue(stateType, out var newState))
         {
             _currentState?.UnloadContent();
-
             _currentState = newState;
-            _currentState.Initialize(_graphicsDevice);
-            _currentState.LoadContent(_content);
+            _currentState.Initialize(_game.GraphicsDevice);
+
+            //this does not work
+            if(stateType == GameStateType.MainMenuState)
+            {
+                //Ändrar fönster storlek utifrån fönster storleken som finns i de olika fönster filerna t.ex MainMenu eller BattleState 
+                _graphicsDeviceManager.PreferredBackBufferWidth = newState.TargetWidth; 
+                _graphicsDeviceManager.PreferredBackBufferHeight = newState.TargetHeight;
+            }
+
+            switch (true)
+            {
+                case var _ when stateType == GameStateType.BattleState:
+                _graphicsDeviceManager.PreferredBackBufferWidth = newState.TargetWidth; 
+                _graphicsDeviceManager.PreferredBackBufferHeight = newState.TargetHeight;
+                break; 
+            }
+
+            // applicerar ändringarna, jag glömmer detta hela tiden!! 
+            _graphicsDeviceManager.ApplyChanges(); 
+
+         
         }
 
     }

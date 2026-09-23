@@ -9,9 +9,9 @@ namespace CoreClassLibrary.Interface;
 
 public enum GameStateType
 {
-    MainMenu, 
-    BattleScreen, 
-    PauseScreen, 
-    GameOverScreen, 
-    VictoryScreen, 
+    MainMenuState, 
+    BattleState, 
+    PauseState, 
+    GameOverState, 
+    VictoryState, 
 }

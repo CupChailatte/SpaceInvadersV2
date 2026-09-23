@@ -8,8 +8,10 @@ using CoreClassLibrary.Interface;
 namespace CoreClassLibrary.Interface;
 
 public class MainMenuState : IGameState
-{
-
+{   
+    public int TargetWidth => 600;
+    public int TargetHeight => 1000;      
+    
     private GameStateManager _gameStateManager; 
     private UIManager _UIManager; 
 

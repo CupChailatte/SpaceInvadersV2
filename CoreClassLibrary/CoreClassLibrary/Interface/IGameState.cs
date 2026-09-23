@@ -9,6 +9,9 @@ namespace CoreClassLibrary.Interface;
 
 public interface IGameState
 {
+
+    public int TargetWidth {get;}
+    public int TargetHeight {get;}
     void Initialize(GraphicsDevice graphicsDevice); 
     void LoadContent(ContentManager content);
     void UnloadContent(); 

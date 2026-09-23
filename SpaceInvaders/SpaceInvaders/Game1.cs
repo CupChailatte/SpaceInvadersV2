@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using CoreClassLibrary.Entities;
 using CoreClassLibrary.Managers;
 using CoreClassLibrary.Interface; 
+using System; 
 
 namespace SpaceInvaders;
 
@@ -14,19 +15,18 @@ public class Game1 : Game
     private GameStateManager _gameStateManager; 
     private UIManager _UIManager; 
     private GraphicsDeviceManager _graphics;
-    private SettingsManager _display; 
-    private InputManager _input; 
     private SpriteBatch _spriteBatch;
-    private Player _player; 
-
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         _UIManager = new UIManager(); 
-        _gameStateManager = new GameStateManager(); 
         //_display = new SettingsManager(_graphics, 750,1300, false);
-
+        /*
+        _graphics.PreferredBackBufferHeight = 1000;
+        _graphics.PreferredBackBufferWidth = 600; 
+        _graphics.ApplyChanges(); 
+        */
         IsMouseVisible = true;
     }
 
@@ -42,15 +42,18 @@ public class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+ 
+        _gameStateManager = new GameStateManager(this, Content, _graphics ); 
 
         // TODO: use this.Content to load your game content here
         // ----PLAYER---- 
         // Texture2D _playerSprite = Content.Load<Texture2D>("Ship_01-1");
         _UIManager.LoadContent(Content); 
-        _gameStateManager.AddState(GameStateType.MainMenu, new MainMenuState(_gameStateManager, _UIManager));
-        _gameStateManager.AddState(GameStateType.BattleScreen, new BattleState(_gameStateManager, _UIManager));  
-        _gameStateManager.ChangeState(GameStateType.MainMenu); 
-        _gameStateManager.ChangeState(GameStateType.BattleScreen); 
+        _gameStateManager.AddState(GameStateType.MainMenuState, new MainMenuState(_gameStateManager, _UIManager));
+        _gameStateManager.AddState(GameStateType.BattleState, new BattleState(_gameStateManager, _UIManager)); 
+        _gameStateManager.ChangeState(GameStateType.BattleState); 
+
+        
 
         // float startX = (_display.Width / 2f - _playerSprite.Width /2f); 
         // float startY = (_display.Height - _playerSprite.Height -20f); 

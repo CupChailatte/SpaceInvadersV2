@@ -71,3 +71,14 @@ Sept 23
 Jag insåg att min SettingsManager som bara tog hand om ändringar av skärmens storlek är reduntant
 och att jag kunde bara använda monogames GraphicsDevice och GraphicsDeviceManager för att ändra fönsterstorlek 
 Jag har tagit bort SettingsManager; 
+
+Satt i flera timmer med en bugg I gameStateManager. 
+
+Jag försökte ändra fönster storlek med GraphicsDevice, vilket inte går eftersom dens jobb är att renderar och rita
+fram saker på skärmen, det var GraphicsDeviceManager som sköter storlek på skärmen 
+
+GraphicsDeviceManager is the General Contractor: It handles the blueprint, 
+changes the room dimensions (resolution), and builds the foundation.
+
+GraphicsDevice is the Painter: It is inside the room,
+handles the actual brushes and canvas, and draws the art (primitives, textures, and sprites).
