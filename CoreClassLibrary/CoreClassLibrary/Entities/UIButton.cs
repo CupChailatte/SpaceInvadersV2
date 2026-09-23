@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using CoreClassLibrary.Managers;
-using System.Numerics;
+using System; 
 
 namespace CoreClassLibrary.Entites;
 
@@ -52,7 +52,7 @@ public class UIButton
         Vector2 textSize = _font.MeasureString(_text); 
         Vector2 textPosition = _position + new Vector2((_texture.Width - textSize.X) /2, (_texture.Height - textSize.Y) /2 );
         //Ritar up knapparna och dens text 
-        spriteBatch.Draw(_texture, _position, textPosition, Color.Black); 
+        spriteBatch.Draw(_texture, textPosition, _bounds, Color.Black); 
 
     }
 

@@ -1,21 +1,20 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using System.Numerics;
 
 namespace CoreClassLibrary.Managers; 
 
 public class UIManager
 {
     private Texture2D _heartTexture; // Texture för spelarens liv.  
-    private SpriteFont _fontTitle;
+    public SpriteFont fontTitle;
     private SpriteFont _fontDefault;  
 
     public void LoadContent(ContentManager content)
     {
-        _fontDefault = content.Load<SpriteFont>();
-        _fontTitle = conent.Load<SpriteFont>("Content/Fonts/TitleFont");
-        _heartTexture = content.Load<Texture2D>(); 
+        //_fontDefault = content.Load<SpriteFont>();
+        fontTitle = content.Load<SpriteFont>("Content/Fonts/TitleFont");
+        //_heartTexture = content.Load<Texture2D>(); 
     }
     public void DrawScore(SpriteBatch spriteBatch, int score, Vector2 position)
     {
@@ -24,8 +23,13 @@ public class UIManager
 
     public void DrawLives(SpriteBatch spritebatch, int health, Vector2 position)
     {
-        spritebatch.DrawString(_heartTexture, "Lives: ", position, Color.Red); 
+        spritebatch.DrawString(fontTitle, "Lives: ", position, Color.Red); 
 
         // TODO: Jag behöver en loop som ritar ut hjärt texturen. 
     }   
+
+    public void DrawTitle(SpriteBatch spriteBatch, Vector2 position)
+    {
+        spriteBatch.DrawString(fontTitle, "SPACE INVADERS", position, Color.Yellow); 
+    }
 }
