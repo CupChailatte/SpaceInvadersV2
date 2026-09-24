@@ -24,6 +24,7 @@ public class MainMenuState : IGameState
     private Vector2 _screenCenter; 
     private Vector2 textSize; 
     public string titleText; 
+    private int _score; 
 
     // note to self , glöm inte att kalla på construktorn! 
     public MainMenuState(GameStateManager gameStateManager, GameAssets assets, InputManager input)
@@ -39,17 +40,13 @@ public class MainMenuState : IGameState
         _graphics = graphicsDevice; 
 
         // ---- TITLETEXT POSITION 
-        titleText = "SPACEINVADERS V2"; 
-        textSize = _gameAssets.TextMenuStateTitle.MeasureString(titleText); 
-        _screenCenter = new Vector2(TargetWidth / 2f, TargetWidth / 2f); // hittar skärm center 
-        titlePosition = new Vector2(_screenCenter.X - textSize.X / 2, _screenCenter.Y - textSize.Y / 2); // delar skärm center med textens storlek för att centrera texten  
-
+       
 
         // ---- MENU PLAYER POSITION ----
         Vector2 _playerSpriteStartPosition = new Vector2(
         TargetWidth / 2f - _gameAssets.PlayerSprite.Width /2f,
         TargetHeight - _gameAssets.PlayerSprite.Height - 20f); 
-        _player = new Player(_gameAssets.PlayerSprite,_playerSpriteStartPosition, 100, 600f, true, false, _input, _graphics); 
+        _player = new Player(_gameAssets.PlayerSprite,_playerSpriteStartPosition, 100, 600f, true, false, _input, _graphics, _score); 
 
         
     }
@@ -65,6 +62,11 @@ public class MainMenuState : IGameState
     } 
     public void Draw(SpriteBatch spriteBatch)
     {
+         titleText = "SPACEINVADERS V2"; 
+        textSize = _gameAssets.TextMenuStateTitle.MeasureString(titleText); 
+        _screenCenter = new Vector2(TargetWidth / 2f, TargetWidth / 2f); // hittar skärm center 
+        titlePosition = new Vector2(_screenCenter.X - textSize.X / 2, _screenCenter.Y - textSize.Y / 2); // delar skärm center med textens storlek för att centrera texten  
+
        
         spriteBatch.Draw(_gameAssets.MenuBackground, Vector2.Zero, Color.White); 
          _player.Draw(spriteBatch);

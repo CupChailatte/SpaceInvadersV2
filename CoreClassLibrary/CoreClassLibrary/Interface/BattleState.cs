@@ -24,6 +24,7 @@ public class BattleState : IGameState
     public string statusText;
 
     private int _playerHealth;
+    private int _score; 
 
 
     // note to self , glöm inte att kalla på construktorn! 
@@ -39,11 +40,12 @@ public class BattleState : IGameState
     {
 
         _playerHealth = 100; 
+        _score = 0; 
         _graphics = graphicsDevice;
         float startX = (TargetWidth / 2f - _gameAssets.PlayerSprite.Width / 2f);
         float startY = (TargetHeight - _gameAssets.PlayerSprite.Height);
         Vector2 startPosition = new Vector2(startX, startY);
-        _player = new Player(_gameAssets.PlayerSprite, startPosition, _playerHealth, 500f, true, false, _input, _graphics);
+        _player = new Player(_gameAssets.PlayerSprite, startPosition, _playerHealth, 500f, true, false, _input, _graphics, _score);
 
     }
     public void LoadContent(ContentManager _content)
@@ -57,7 +59,7 @@ public class BattleState : IGameState
     }
     public void Draw(SpriteBatch spriteBatch)
     {
-        statusText = $"HEALTH: {_playerHealth} SCORE : 0"; // UPDATE THIS LATER 
+        statusText = $"HEALTH: {_playerHealth} SCORE : {_score}"; // UPDATE THIS LATER 
         textStatusPosition = new Vector2(10, 10);
         spriteBatch.Draw(_gameAssets.MenuBackground, Vector2.Zero, Color.White);
         spriteBatch.DrawString(_gameAssets.TextBattleStatus, statusText, textStatusPosition, Color.Yellow);

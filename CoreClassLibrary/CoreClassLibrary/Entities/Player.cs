@@ -12,6 +12,7 @@ public class Player : Entity
 
     protected InputManager _input; 
     protected GraphicsDevice _display; 
+    protected int _score; 
     public Player(Texture2D sprite,
      Vector2 spritePosition,
       int health = 100,
@@ -19,7 +20,8 @@ public class Player : Entity
         bool canShoot = true,
          bool isExpired = false,
           InputManager inputManager = null,
-          GraphicsDevice display = null) : base(
+          GraphicsDevice display = null,
+          int score = 0) : base(
     sprite,
     spritePosition,
     health,
@@ -29,7 +31,7 @@ public class Player : Entity
     {
      _input = inputManager; 
      _display = display;    
-     
+     _score = score; 
     }
 
 

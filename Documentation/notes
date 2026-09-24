@@ -89,3 +89,11 @@ TextureManager/AssetManager
  AssetLoader ska bara ladda upp filerna inte byta Bakgrund
   
 Animation in Entities/ Animator class 
+
+
+25 September TODO
+ADD:  
+- BULLET 
+- ENEMIES
+- ENMEY MANAGER WITH 2D ARRAY 
+- COLLISION MANAGER 
