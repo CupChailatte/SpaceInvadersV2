@@ -82,3 +82,10 @@ changes the room dimensions (resolution), and builds the foundation.
 
 GraphicsDevice is the Painter: It is inside the room,
 handles the actual brushes and canvas, and draws the art (primitives, textures, and sprites).
+
+
+TODO: 
+TextureManager/AssetManager
+ AssetLoader ska bara ladda upp filerna inte byta Bakgrund
+  
+Animation in Entities/ Animator class 

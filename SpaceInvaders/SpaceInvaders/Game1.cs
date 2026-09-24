@@ -18,6 +18,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     public InputManager input; 
+    public Texture2D texture2D; 
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -38,19 +39,22 @@ public class Game1 : Game
         // _input = new InputManager(); 
         Window.Title = "SPACE INVADERSV2";
         input = new InputManager(); 
-
+        
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
+        
  
         _gameStateManager = new GameStateManager(this, Content, _graphics ); 
 
         // TODO: use this.Content to load your game content here
         // ----PLAYER---- 
-        // Texture2D _playerSprite = Content.Load<Texture2D>("Ship_01-1");
+        //  Texture2D _playerSprite = Content.Load<Texture2D>(""");
+        AssetLoader.Load(Content);
+        texture2D = AssetLoader._playerTexture; 
         _UIManager.LoadContent(Content); 
         _gameStateManager.AddState(GameStateType.MainMenuState, new MainMenuState(_gameStateManager, _UIManager));
         _gameStateManager.AddState(GameStateType.BattleState, new BattleState(_gameStateManager, _UIManager)); 
@@ -98,6 +102,7 @@ public class Game1 : Game
         _spriteBatch.Begin(); 
         // _player.Draw(_spriteBatch);
         _gameStateManager.Draw(_spriteBatch);
+        
         _spriteBatch.End(); 
 
         // TODO: Add your drawing code here
