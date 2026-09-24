@@ -5,6 +5,7 @@ using CoreClassLibrary.Entities;
 using CoreClassLibrary.Managers;
 using CoreClassLibrary.Interface; 
 using System; 
+using System.Diagnostics; 
 
 namespace SpaceInvaders;
 
@@ -16,6 +17,7 @@ public class Game1 : Game
     private UIManager _UIManager; 
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
+    public InputManager input; 
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -35,6 +37,7 @@ public class Game1 : Game
         // TODO: Add your initialization logic here (Gör så att jag kan avända mina objekt)
         // _input = new InputManager(); 
         Window.Title = "SPACE INVADERSV2";
+        input = new InputManager(); 
 
         base.Initialize();
     }
@@ -51,7 +54,9 @@ public class Game1 : Game
         _UIManager.LoadContent(Content); 
         _gameStateManager.AddState(GameStateType.MainMenuState, new MainMenuState(_gameStateManager, _UIManager));
         _gameStateManager.AddState(GameStateType.BattleState, new BattleState(_gameStateManager, _UIManager)); 
-        _gameStateManager.ChangeState(GameStateType.BattleState); 
+        _gameStateManager.ChangeState(GameStateType.MainMenuState); 
+
+      
 
         
 
@@ -70,6 +75,20 @@ public class Game1 : Game
         // TODO: Add your update logic here
         // _input.Update(); 
         // _player.Update(gameTime);
+
+
+        /* TEST 
+        input.Update(); 
+
+          switch (true)
+        {
+            case var _ when input.IsKeyPressed(Keys.Enter):
+            Console.WriteLine("Enter key called"); 
+            _gameStateManager.ChangeState(GameStateType.BattleState); 
+            break; 
+
+        }
+        */ 
         base.Update(gameTime);
     }
 
