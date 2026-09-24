@@ -65,6 +65,14 @@
 /processorParam:Version=3.8.5.1
 /build:EnemySprite/alien01-01.png
 
+#begin Fonts/StatusText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/processorParam:Version=3.8.5.1
+/build:Fonts/StatusText.spritefont
+
 #begin Fonts/Text.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

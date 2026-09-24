@@ -14,12 +14,12 @@ public class Player : Entity
     protected GraphicsDevice _display; 
     public Player(Texture2D sprite,
      Vector2 spritePosition,
-      int health,
-       float speed,
-        bool canShoot,
-         bool isExpired,
-          InputManager inputManager,
-          GraphicsDevice display) : base(
+      int health = 100,
+       float speed = 500f,
+        bool canShoot = true,
+         bool isExpired = false,
+          InputManager inputManager = null,
+          GraphicsDevice display = null) : base(
     sprite,
     spritePosition,
     health,
@@ -36,7 +36,7 @@ public class Player : Entity
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime); 
-        Vector2 targetMousePosition = _input.GetMousePosition(); // Hämtar musen position x och y 
+        Vector2 MousePosition = _input.GetMousePosition(); // Hämtar musen position x och y 
 
         //input 
         switch (true)
@@ -46,22 +46,24 @@ public class Player : Entity
             _spritePosition.X -= _speed * _deltaTime; 
            // Console.WriteLine("MOVE LEFT FUNCTION CALL - PLAYER CLASS"); 
             break;
-            case var _ when _input.IsKeyDown(Keys.Right) ||_input.IsKeyDown(Keys.D): 
+            case var _ when _input.IsKeyDown     (Keys.Right) ||_input.IsKeyDown(Keys.D): 
             _spritePosition.X += _speed * _deltaTime;  
             //Console.WriteLine("MOVE RIGHT FUNCTION CALL - PLAYER CLASS"); 
             break;
-            // Körs bara om pilen är inne i fönstret
-            case var _ when targetMousePosition.X >= 0 && targetMousePosition.X <= _display.Viewport.Width && 
-            targetMousePosition.Y >= 0 && targetMousePosition.Y <= _display.Viewport.Height:
-             //--- Centrerar Musen på player sprite --- 
-             targetMousePosition.X -= _sprite.Width /2f; 
-             targetMousePosition.Y -= _sprite.Height /2f;
-             // --- Musen kan bara flytta sprite i x-led ---
-             _spritePosition.X = targetMousePosition.X - (_sprite.Width /2);
-             break; 
+           
 
              
                   
+        }
+
+        switch (true)
+        {
+             // Körs bara om pilen är inne i fönstret
+            case var _ when MousePosition.X >= 0 && MousePosition.X <= _display.Viewport.Width && 
+            MousePosition.Y >= 0 && MousePosition.Y <= _display.Viewport.Height:
+             // --- Musen kan bara flytta sprite i x-led Samt centrerar musen på spriten---
+             _spritePosition.X = MousePosition.X - (_sprite.Width /2);
+             break; 
         }
 
         switch (true)
@@ -71,8 +73,6 @@ public class Player : Entity
             Console.WriteLine("SHOOT FUNCTION CALLED - PLAYER CLASS ");
             break; 
         }
-
-        
 
         _spritePosition.X = MathHelper.Clamp(_spritePosition.X, 0, _display.Viewport.Width - _sprite.Width);
         

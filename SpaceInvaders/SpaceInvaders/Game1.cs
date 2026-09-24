@@ -82,8 +82,8 @@ public class Game1 : Game
             _gameStateManager.ChangeState(GameStateType.BattleState);
             break;
 
-            case var _ when input.IsKeyPressed(Keys.A):
-            Console.WriteLine("Enter key called, go backed");
+            case var _ when input.IsKeyPressed(Keys.B):
+            Console.WriteLine("B key called, returned to prevous screen");
             _gameStateManager.ChangeState(GameStateType.MainMenuState); 
              break; 
                 
