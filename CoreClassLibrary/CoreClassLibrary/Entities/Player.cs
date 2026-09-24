@@ -41,6 +41,7 @@ public class Player : Entity
         //input 
         switch (true)
         {
+            
             case var _ when _input.IsKeyDown(Keys.Left) || _input.IsKeyDown(Keys.A): 
             _spritePosition.X -= _speed * _deltaTime; 
            // Console.WriteLine("MOVE LEFT FUNCTION CALL - PLAYER CLASS"); 
@@ -58,6 +59,8 @@ public class Player : Entity
              // --- Musen kan bara flytta sprite i x-led ---
              _spritePosition.X = targetMousePosition.X - (_sprite.Width /2);
              break; 
+
+             
                   
         }
 

@@ -3,9 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using CoreClassLibrary.Entities;
 using CoreClassLibrary.Managers;
-using CoreClassLibrary.Interface; 
-using System; 
-using System.Diagnostics; 
+using CoreClassLibrary.Interface;
+using CoreClassLibrary.Assets;
+using System;
+using System.Diagnostics;
 
 namespace SpaceInvaders;
 
@@ -13,56 +14,49 @@ public class Game1 : Game
 {
     //---- MANAGERS ----
 
-    private GameStateManager _gameStateManager; 
-    private UIManager _UIManager; 
+    private GameStateManager _gameStateManager;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    public InputManager input; 
-    public Texture2D texture2D; 
+    public InputManager input;
+    public Texture2D texture2D;
+    public GameAssets gameAssets;
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
-        _UIManager = new UIManager(); 
-        //_display = new SettingsManager(_graphics, 750,1300, false);
-        /*
-        _graphics.PreferredBackBufferHeight = 1000;
-        _graphics.PreferredBackBufferWidth = 600; 
-        _graphics.ApplyChanges(); 
-        */
+
+
+        gameAssets = new GameAssets();
+
         IsMouseVisible = true;
     }
 
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here (Gör så att jag kan avända mina objekt)
-        // _input = new InputManager(); 
         Window.Title = "SPACE INVADERSV2";
-        input = new InputManager(); 
-        
+        input = new InputManager();
+
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        
- 
-        _gameStateManager = new GameStateManager(this, Content, _graphics ); 
+
+
+        _gameStateManager = new GameStateManager(this, Content, _graphics);
 
         // TODO: use this.Content to load your game content here
         // ----PLAYER---- 
         //  Texture2D _playerSprite = Content.Load<Texture2D>(""");
-        AssetLoader.Load(Content);
-        texture2D = AssetLoader._playerTexture; 
-        _UIManager.LoadContent(Content); 
-        _gameStateManager.AddState(GameStateType.MainMenuState, new MainMenuState(_gameStateManager, _UIManager));
-        _gameStateManager.AddState(GameStateType.BattleState, new BattleState(_gameStateManager, _UIManager)); 
-        _gameStateManager.ChangeState(GameStateType.MainMenuState); 
 
-      
+        gameAssets.LoadContent(Content); // Laddar in alla mina assets! 
 
-        
+
+        _gameStateManager.AddState(GameStateType.MainMenuState, new MainMenuState(_gameStateManager, gameAssets, input));
+        _gameStateManager.AddState(GameStateType.BattleState, new BattleState(_gameStateManager, gameAssets, input));
+        _gameStateManager.ChangeState(GameStateType.MainMenuState);
 
         // float startX = (_display.Width / 2f - _playerSprite.Width /2f); 
         // float startY = (_display.Height - _playerSprite.Height -20f); 
@@ -74,36 +68,39 @@ public class Game1 : Game
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-        
-        _gameStateManager.Update(gameTime); 
+
+        input.Update();
+
+        _gameStateManager.Update(gameTime);
         // TODO: Add your update logic here
-        // _input.Update(); 
         // _player.Update(gameTime);
-
-
-        /* TEST 
-        input.Update(); 
-
-          switch (true)
+        // Test 
+        switch (true)
         {
             case var _ when input.IsKeyPressed(Keys.Enter):
-            Console.WriteLine("Enter key called"); 
-            _gameStateManager.ChangeState(GameStateType.BattleState); 
-            break; 
+            Console.WriteLine("Enter key called");
+            _gameStateManager.ChangeState(GameStateType.BattleState);
+            break;
+
+            case var _ when input.IsKeyPressed(Keys.A):
+            Console.WriteLine("Enter key called, go backed");
+            _gameStateManager.ChangeState(GameStateType.MainMenuState); 
+             break; 
+                
 
         }
-        */ 
+
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-        _spriteBatch.Begin(); 
+        _spriteBatch.Begin();
         // _player.Draw(_spriteBatch);
         _gameStateManager.Draw(_spriteBatch);
-        
-        _spriteBatch.End(); 
+
+        _spriteBatch.End();
 
         // TODO: Add your drawing code here
 

@@ -57,6 +57,7 @@ public class GameStateManager
                 _graphicsDeviceManager.PreferredBackBufferHeight = newState.TargetHeight;
                 break; 
             }
+            
 
             // applicerar ändringarna, jag glömmer detta hela tiden!! 
             _graphicsDeviceManager.ApplyChanges(); 
