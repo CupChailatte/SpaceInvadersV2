@@ -18,6 +18,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     public InputManager input;
+    private BulletManager _bulletManager; 
     public Texture2D texture2D;
     public GameAssets gameAssets;
     public Game1()
@@ -36,6 +37,7 @@ public class Game1 : Game
         // TODO: Add your initialization logic here (Gör så att jag kan avända mina objekt)
         Window.Title = "SPACE INVADERSV2";
         input = new InputManager();
+        _bulletManager = new BulletManager(Content); 
 
         base.Initialize();
     }
@@ -54,8 +56,8 @@ public class Game1 : Game
         gameAssets.LoadContent(Content); // Laddar in alla mina assets! 
 
 
-        _gameStateManager.AddState(GameStateType.MainMenuState, new MainMenuState(_gameStateManager, gameAssets, input));
-        _gameStateManager.AddState(GameStateType.BattleState, new BattleState(_gameStateManager, gameAssets, input));
+        _gameStateManager.AddState(GameStateType.MainMenuState, new MainMenuState(_gameStateManager, gameAssets, input, _bulletManager));
+        _gameStateManager.AddState(GameStateType.BattleState, new BattleState(_gameStateManager, gameAssets, input, _bulletManager));
         _gameStateManager.ChangeState(GameStateType.MainMenuState);
 
         // float startX = (_display.Width / 2f - _playerSprite.Width /2f); 
@@ -99,7 +101,7 @@ public class Game1 : Game
         _spriteBatch.Begin();
         // _player.Draw(_spriteBatch);
         _gameStateManager.Draw(_spriteBatch);
-
+        _bulletManager.Draw(_spriteBatch); 
         _spriteBatch.End();
 
         // TODO: Add your drawing code here

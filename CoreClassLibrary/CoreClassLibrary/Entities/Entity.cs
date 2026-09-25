@@ -11,10 +11,9 @@ public class Entity
     //* Protected gör så att subklassen kan komma åt properties av basklassen.
     //* Klasser som inte är av typ Entity kan inte komma åt dens properties. 
     protected Texture2D _sprite;
-    public Vector2 _spritePosition;
+    protected Vector2 _spritePosition;
     protected int _health;
     protected float _speed;
-    protected bool _canShoot;
     protected bool _isExpired;
 
     protected float _deltaTime; 
@@ -25,15 +24,13 @@ public class Entity
     Vector2 spritePosition,
     int health,
     float speed,
-    bool canShoot, 
-    bool isActive)
+    bool isExpired)
     {
         _sprite = sprite; 
         _spritePosition = spritePosition; 
         _health = health;
         _speed = speed; 
-        _canShoot = canShoot; 
-        _isExpired = isActive; 
+        _isExpired = isExpired; 
 
     }
     public virtual void TakeDamage(int damage)

@@ -13,7 +13,7 @@ public class GameStateManager
     private readonly Dictionary<GameStateType, IGameState> _states = new Dictionary<GameStateType, IGameState>();
     private IGameState _currentState;
     private ContentManager _content; 
-    private GraphicsDevice _graphicsDevice;
+    // private GraphicsDevice _graphicsDevice;
     private GraphicsDeviceManager _graphicsDeviceManager;  
     private Game _game; 
 
