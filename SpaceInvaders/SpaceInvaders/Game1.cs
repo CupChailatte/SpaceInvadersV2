@@ -18,7 +18,7 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     public InputManager input;
-    private BulletManager _bulletManager; 
+    private BulletManager _bulletManager;
     public Texture2D texture2D;
     public GameAssets gameAssets;
     public Game1()
@@ -37,8 +37,8 @@ public class Game1 : Game
         // TODO: Add your initialization logic here (Gör så att jag kan avända mina objekt)
         Window.Title = "SPACE INVADERSV2";
         input = new InputManager();
-        _bulletManager = new BulletManager(Content); 
-
+        _bulletManager = new BulletManager(Content);
+        _gameStateManager = new GameStateManager(this, Content, _graphics);
         base.Initialize();
     }
 
@@ -47,7 +47,7 @@ public class Game1 : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
-        _gameStateManager = new GameStateManager(this, Content, _graphics);
+
 
         // TODO: use this.Content to load your game content here
         // ----PLAYER---- 
@@ -80,15 +80,15 @@ public class Game1 : Game
         switch (true)
         {
             case var _ when input.IsKeyPressed(Keys.Enter):
-            Console.WriteLine("Enter key called");
-            _gameStateManager.ChangeState(GameStateType.BattleState);
-            break;
+                Console.WriteLine("Enter key called");
+                _gameStateManager.ChangeState(GameStateType.BattleState);
+                break;
 
             case var _ when input.IsKeyPressed(Keys.B):
-            Console.WriteLine("B key called, returned to prevous screen");
-            _gameStateManager.ChangeState(GameStateType.MainMenuState); 
-             break; 
-                
+                Console.WriteLine("B key called, returned to prevous screen");
+                _gameStateManager.ChangeState(GameStateType.MainMenuState);
+                break;
+
 
         }
 
@@ -101,7 +101,7 @@ public class Game1 : Game
         _spriteBatch.Begin();
         // _player.Draw(_spriteBatch);
         _gameStateManager.Draw(_spriteBatch);
-        _bulletManager.Draw(_spriteBatch); 
+        _bulletManager.Draw(_spriteBatch);
         _spriteBatch.End();
 
         // TODO: Add your drawing code here
